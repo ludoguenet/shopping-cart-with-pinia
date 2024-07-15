@@ -1,31 +1,12 @@
 <template>
     <div @click="$emit('close')" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-  <!--
-    Background backdrop, show/hide based on slide-over state.
-
-    Entering: "ease-in-out duration-500"
-      From: "opacity-0"
-      To: "opacity-100"
-    Leaving: "ease-in-out duration-500"
-      From: "opacity-100"
-      To: "opacity-0"
-  -->
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity ease-in-out duration-500 opacity-100" aria-hidden="true"></div>
 
   <div class="fixed inset-0 overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
       <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <!--
-          Slide-over panel, show/hide based on slide-over state.
 
-          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-full"
-            To: "translate-x-0"
-          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-0"
-            To: "translate-x-full"
-        -->
-        <div @click.stop class="pointer-events-auto w-screen max-w-md">
+        <div @click.stop class="pointer-events-auto w-screen max-w-md transform transition ease-in-out duration-500 sm:duration-700 translate-x-0">
           <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
             <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
               <div class="flex items-start justify-between">
@@ -62,7 +43,7 @@
                           <p class="mt-1 text-sm text-gray-500">N/A</p>
                         </div>
                         <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
+                          <p class="text-gray-500">Qty {{ item.qty }}</p>
 
                           <div class="flex">
                             <button @click.prevent="cart.remove(item.id)" type="button" class="font-medium text-emerald-600 hover:text-emerald-500">Remove</button>
@@ -111,7 +92,9 @@ import { useCartStore } from '@/utils/useCartStore';
 
 const cart = useCartStore();
 
-defineEmits({
-  close,
+defineProps({
+  show: Boolean,
 });
+
+defineEmits(['close']);
 </script>

@@ -27,58 +27,13 @@
                             <div class="flex">
                                 <div class="relative flex">
                                     <!-- Item active: "border-emerald-600 text-emerald-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
-                                    <button type="button" class="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-800" aria-expanded="false">Women</button>
-                                </div>
-                                
-                                <!--
-                                'Women' flyout menu, show/hide based on flyout menu state.
-                                
-                                Entering: "transition ease-out duration-200"
-                                From: "opacity-0"
-                                To: "opacity-100"
-                                Leaving: "transition ease-in duration-150"
-                                From: "opacity-100"
-                                To: "opacity-0"
-                                -->
-                                <div class="absolute inset-x-0 top-full text-sm text-gray-500">
-                                    <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
-                                    <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
-                                    
-                                    <div class="relative bg-white">
-                                        <div class="mx-auto max-w-7xl px-8">
-                                            <div class="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                                <div class="col-start-2 grid grid-cols-2 gap-x-8">
-                                                    <div class="group relative text-base sm:text-sm">
-                                                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                                            <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." class="object-cover object-center">
-                                                        </div>
-                                                        <a href="#" class="mt-6 block font-medium text-gray-900">
-                                                            <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                                            New Arrivals
-                                                        </a>
-                                                        <p aria-hidden="true" class="mt-1">Shop now</p>
-                                                    </div>
-                                                    <div class="group relative text-base sm:text-sm">
-                                                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                                            <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." class="object-cover object-center">
-                                                        </div>
-                                                        <a href="#" class="mt-6 block font-medium text-gray-900">
-                                                            <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                                            Basic Tees
-                                                        </a>
-                                                        <p aria-hidden="true" class="mt-1">Shop now</p>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button type="button" class="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-800" aria-expanded="false">Pants</button>
                                 </div>
                             </div>
                             <div class="flex">
                                 <div class="relative flex">
-                                    <!-- Item active: "border-emerald-600 text-emerald-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
-                                    <button type="button" class="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-800" aria-expanded="false">Men</button>
+                                    <!-- Item active: "", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
+                                    <button type="button" class="relative z-10 -mb-px flex items-center border-b-2 border-emerald-600 text-emerald-600 pt-px text-sm font-medium transition-colors duration-200 ease-out hover:text-gray-800" aria-expanded="false">Tee shirts</button>
                                 </div>
                                 
                                 <!--
@@ -111,8 +66,8 @@
                                 </div>
                             </div>
                             
-                            <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Company</a>
-                            <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
+                            <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Jewels</a>
+                            <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Bags</a>
                         </div>
                     </div>
                     
@@ -140,7 +95,7 @@
                                 </svg>
                             </a>
                         </div>
-                        
+
                         <!-- Cart -->
                         <div @click="showCart = true" class="ml-4 flow-root lg:ml-6">
                             <a href="#" class="group -m-2 flex items-center p-2">
@@ -151,10 +106,16 @@
                                 <span class="sr-only">items in cart, view bag</span>
                             </a>
                         </div>
-                        <CartList
-                            @close="showCart = false" 
-                            v-if="showCart"
-                         />
+
+                        <Transition name="fade">
+                            <CartList
+                                @close="showCart = false"
+
+                                v-if=showCart
+
+                                :show=showCart
+                            />
+                        </Transition>
                     </div>
                 </div>
             </div>
@@ -173,9 +134,21 @@ const cart = useCartStore();
 const showCart = ref(false);
 
 const items = ref([
-{id: 1, name: 'Basic tee', price: 35},
-{id: 2, name: 'Premium tee', price: 99},
-{id: 3, name: 'Elite tee', price: 150},
-{id: 4, name: 'Legend tee', price: 999},
+    {id: 1, name: 'Basic tee', price: 35, qty: 1},
+    {id: 2, name: 'Premium tee', price: 99, qty: 1},
+    {id: 3, name: 'Elite tee', price: 150, qty: 1},
+    {id: 4, name: 'Legend tee', price: 999, qty: 1},
 ]);
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
