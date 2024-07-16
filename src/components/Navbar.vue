@@ -53,7 +53,7 @@
                                     <div class="relative bg-white">
                                         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                                             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-
+                                                
                                                 <template v-for="item in items" :key="item.id">
                                                     <ProductView :item=item />
                                                 </template>
@@ -95,7 +95,7 @@
                                 </svg>
                             </a>
                         </div>
-
+                        
                         <!-- Cart -->
                         <div @click="showCart = true" class="ml-4 flow-root lg:ml-6">
                             <a href="#" class="group -m-2 flex items-center p-2">
@@ -106,14 +106,12 @@
                                 <span class="sr-only">items in cart, view bag</span>
                             </a>
                         </div>
-
-                        <!-- <Transition name="fade"> -->
-                            <CartList
-                                @close="showCart = false"
-
-                                :show=showCart
-                            />
-                        <!-- </Transition> -->
+                        
+                        <CartList
+                            @close="showCart = false"
+                            
+                            :show=showCart
+                        />
                     </div>
                 </div>
             </div>
@@ -129,7 +127,7 @@ import CartList from './CartList.vue';
 
 const cart = useCartStore();
 
-const showCart = ref(true);
+const showCart = ref(false);
 
 const items = ref([
     {id: 1, name: 'Basic tee', price: 35, qty: 1},
@@ -138,15 +136,3 @@ const items = ref([
     {id: 4, name: 'Legend tee', price: 999, qty: 1},
 ]);
 </script>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
