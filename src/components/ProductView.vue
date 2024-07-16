@@ -6,7 +6,7 @@
         <div class="mt-4 flex justify-between">
             <div>
                 <h3 class="text-sm text-gray-700">
-                    <a @click.prevent="cart.add(item)" href="#">
+                    <a href="#">
                         <span aria-hidden="true" class="absolute inset-0"></span>
                         {{ item.name }}
                     </a>
@@ -19,9 +19,6 @@
 </template>
 
 <script setup>
-import { useCartStore } from '@/utils/useCartStore';
-
-const cart = useCartStore();
 
 defineProps({
     item: Object

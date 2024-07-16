@@ -54,9 +54,9 @@
                                         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                                             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                                                 
-                                                <template v-for="item in items" :key="item.id">
-                                                    <ProductView :item=item />
-                                                </template>
+                                                
+                                                    <ProductView :item="{name: 'teeshirt', price: 100, qty: 1}" />
+                                                
                                                 
                                                 <!-- More products... -->
                                             </div>
@@ -102,7 +102,7 @@
                                 <svg class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                                 </svg>
-                                <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{{ cart.count }}</span>
+                                <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                                 <span class="sr-only">items in cart, view bag</span>
                             </a>
                         </div>
@@ -121,18 +121,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useCartStore } from '@/utils/useCartStore';
 import ProductView from './ProductView.vue';
 import CartList from './CartList.vue';
 
-const cart = useCartStore();
-
 const showCart = ref(false);
-
-const items = ref([
-    {id: 1, name: 'Basic tee', price: 35, qty: 1},
-    {id: 2, name: 'Premium tee', price: 99, qty: 1},
-    {id: 3, name: 'Elite tee', price: 150, qty: 1},
-    {id: 4, name: 'Legend tee', price: 999, qty: 1},
-]);
 </script>
