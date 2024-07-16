@@ -107,15 +107,13 @@
                             </a>
                         </div>
 
-                        <Transition name="fade">
+                        <!-- <Transition name="fade"> -->
                             <CartList
                                 @close="showCart = false"
 
-                                v-if=showCart
-
                                 :show=showCart
                             />
-                        </Transition>
+                        <!-- </Transition> -->
                     </div>
                 </div>
             </div>
@@ -131,7 +129,7 @@ import CartList from './CartList.vue';
 
 const cart = useCartStore();
 
-const showCart = ref(false);
+const showCart = ref(true);
 
 const items = ref([
     {id: 1, name: 'Basic tee', price: 35, qty: 1},

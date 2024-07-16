@@ -1,12 +1,12 @@
 <template>
-    <div @click="$emit('close')" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity ease-in-out duration-500 opacity-100" aria-hidden="true"></div>
-
+  <Transition name="fade">
+    <div v-if="show" @click="$emit('close')" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+      <div :class="[show === true ? 'opacity-100' : 'opacity-0']" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity ease-in-out duration-500" aria-hidden="true"></div>
   <div class="fixed inset-0 overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
       <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
 
-        <div @click.stop class="pointer-events-auto w-screen max-w-md transform transition ease-in-out duration-500 sm:duration-700 translate-x-0">
+        <div @click.stop :class="[show === true ? 'translate-x-0' : 'translate-x-full']" class="pointer-events-auto w-screen max-w-md transform transition ease-in-out duration-500 sm:duration-700">
           <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
             <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
               <div class="flex items-start justify-between">
@@ -83,8 +83,8 @@
       </div>
     </div>
   </div>
-</div>
-
+    </div>
+  </Transition>
 </template>
 
 <script setup>
@@ -98,3 +98,15 @@ defineProps({
 
 defineEmits(['close']);
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
