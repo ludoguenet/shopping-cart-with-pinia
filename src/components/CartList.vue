@@ -63,11 +63,10 @@
                   <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                     <div class="flex justify-between text-base font-medium text-gray-900">
                       <p>Subtotal</p>
-<<<<<<< Updated upstream
-                      <p>${{ cart.totalPrice }}</p>
-=======
+
+
                       <p>${{ cart.subTotal }}</p>
->>>>>>> Stashed changes
+
                     </div>
                     <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div class="mt-6">
@@ -97,9 +96,6 @@
 import { useCartStore } from '@/utils/useCartStore';
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { useCartStore } from "@/utils/useCartStore.js";
-
-const cart = useCartStore();
 
 const cart = useCartStore();
 
