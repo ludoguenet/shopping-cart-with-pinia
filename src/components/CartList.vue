@@ -26,33 +26,33 @@
                     <div class="mt-8">
                       <div class="flow-root">
                         <ul role="list" class="-my-6 divide-y divide-gray-200">
-                        
-                        <template v-for="item in cart.items" :key="item.id">
-                          <li class="flex py-6">
-                            <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                              <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
-                            </div>
-                            
-                            <div class="ml-4 flex flex-1 flex-col">
-                              <div>
-                                <div class="flex justify-between text-base font-medium text-gray-900">
-                                  <h3>
-                                    <a href="#">{{ item.name }}</a>
-                                  </h3>
-                                  <p class="ml-4">${{ item.price }}</p>
-                                </div>
-                                <p class="mt-1 text-sm text-gray-500">N/A</p>
+
+                          <template v-for="item in cart.items" :key="item.id">
+                            <li class="flex py-6">
+                              <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
                               </div>
-                              <div class="flex flex-1 items-end justify-between text-sm">
-                                <p class="text-gray-500">Qty {{ item.qty }}</p>
-                                
-                                <div class="flex">
-                                  <button @click.prevent="cart.remove(item.id)" type="button" class="font-medium text-emerald-600 hover:text-emerald-500">Remove</button>
+
+                              <div class="ml-4 flex flex-1 flex-col">
+                                <div>
+                                  <div class="flex justify-between text-base font-medium text-gray-900">
+                                    <h3>
+                                      <a href="#">{{ item.name }}</a>
+                                    </h3>
+                                    <p class="ml-4">${{ item.price }}</p>
+                                  </div>
+                                  <p class="mt-1 text-sm text-gray-500">N/A</p>
+                                </div>
+                                <div class="flex flex-1 items-end justify-between text-sm">
+                                  <p class="text-gray-500">Qty {{ item.qty }}</p>
+
+                                  <div class="flex">
+                                    <button @click.prevent="cart.remove(item.id)" type="button" class="font-medium text-emerald-600 hover:text-emerald-500">Remove</button>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </li>
-                        </template>
+                            </li>
+                          </template>
                       
                       <!-- More products... -->
                     </ul>
@@ -63,7 +63,11 @@
                   <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                     <div class="flex justify-between text-base font-medium text-gray-900">
                       <p>Subtotal</p>
+<<<<<<< Updated upstream
                       <p>${{ cart.totalPrice }}</p>
+=======
+                      <p>${{ cart.subTotal }}</p>
+>>>>>>> Stashed changes
                     </div>
                     <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div class="mt-6">
@@ -93,6 +97,9 @@
 import { useCartStore } from '@/utils/useCartStore';
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { useCartStore } from "@/utils/useCartStore.js";
+
+const cart = useCartStore();
 
 const cart = useCartStore();
 

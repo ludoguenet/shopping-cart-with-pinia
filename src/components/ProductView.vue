@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { useCartStore } from '@/utils/useCartStore';
+import { useCartStore } from "@/utils/useCartStore.js";
 
 const cart = useCartStore();
 
